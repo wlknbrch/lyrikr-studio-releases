@@ -14,7 +14,7 @@ Support for Intel Macs, Windows, and Linux is planned for a later release.
 
 ## Install Lyrikr Studio
 
-1. Open the latest release and download the `Lyrikr Studio_1.0.0_aarch64.dmg` asset.
+1. Open the latest release and download the `Lyrikr Studio_1.7.6_aarch64.dmg` asset.
 2. Open the downloaded DMG.
 3. Drag **Lyrikr Studio** to the **Applications** folder.
 4. Open the app from Applications.
@@ -45,34 +45,14 @@ A macOS release can contain two related assets:
 
 | Asset | Purpose |
 | --- | --- |
-| `Lyrikr Studio_1.0.0_aarch64.dmg` | The desktop application installer for Apple Silicon Macs. |
-| `lyrikr-runtime-darwin-aarch64-v1.7.3.tar.gz` | The local processing runtime downloaded by the app during first-time setup. End users normally do not install this manually. |
+| `Lyrikr Studio_1.7.6_aarch64.dmg` | The desktop application installer for Apple Silicon Macs. |
+| `lyrikr-runtime-darwin-aarch64-v1.7.6.tar.gz` | The local processing runtime downloaded by the app during first-time setup. End users normally do not install this manually. |
 
 If a SHA-256 checksum file is attached to a release, verify the downloaded asset before opening it:
 
 ```bash
-shasum -a 256 "Lyrikr Studio_1.0.0_aarch64.dmg"
+shasum -a 256 "Lyrikr Studio_1.7.6_aarch64.dmg"
 ```
-
-## Notes for release maintainers
-
-The runtime archive can be hosted as a GitHub Release asset, but its final direct download URL and checksum must be configured in Lyrikr Studio's bundled `runtime-feed.json` **before the DMG is built**.
-
-For a release tag such as `v1.0.0`, the runtime URL should follow this pattern:
-
-```text
-https://github.com/slinkysloperatjohn-source/lyrikr-studio-releases/releases/download/v1.0.0/lyrikr-runtime-darwin-aarch64-v1.7.3.tar.gz
-```
-
-In the Lyrikr Studio project, configure the feed with the matching release base URL, verify it, and then build the DMG:
-
-```bash
-npm run ship:configure-runtime-feed -- https://github.com/slinkysloperatjohn-source/lyrikr-studio-releases/releases/download/v1.0.0
-npm run ship:verify-macos-runtime
-npm run ship:macos
-```
-
-Uploading a runtime archive after a DMG has already been built will work only if that DMG already contains the corresponding release URL and checksum. Otherwise, configure the feed and rebuild the DMG first.
 
 ## Responsible use
 
